@@ -35,8 +35,8 @@ var sortedNumbers : [Int] = []
 numbers.append(5)
 numbers.append(6)
 numbers.append(2)
-numbers.append(7)
 numbers.append(9)
+numbers.append(7)
 
 // Show the user the contents of the array
 print("-----")
@@ -50,33 +50,35 @@ print("-----")
 print("Now sorting the array...")
 
 // Begin sorting the list
-while numbers.count > 0 {
+while numbers.count > 1 {
     
     // Assume first number in the list is highest
     var highestIndex = 0
     var highestValue = numbers[0]
     
     // Loop to find the current highest in the list
-    for i in 0..<numbers.count {
-        print("Index is \(i) and the value is \(numbers[i])")
-        // Print the index and value, from first to last
-        for i in stride(from: numbers.count - 1, through: 0, by: -1) {
-            //    print("Index is \(i) and the value is \(numbers[i])")
+    for i in 1...numbers.count-1 {
+        if highestValue < numbers[i] {
+            highestValue = numbers[i]
+            highestIndex = i
         }
-        
     }
     
-    numbers.remove(at: numbers.count - 1) // remove number at the end of array
-    numbers.append(numbers.count - 1)
+    numbers.remove(at: highestIndex) // remove number at the highest Index
+    sortedNumbers.append(highestValue)
 }
+
+// Remove the last item and ad it to the Sorted list
+sortedNumbers.append(numbers[0])
 
 
 // ----------- Final part of the program, show the sorted list -----------
 print("-----")
 print("The contents of the sorted list:")
-for i in 0...numbers.count - 1 {
-    print("Index \(i), value: \(numbers[i])")
+for i in 0...sortedNumbers.count - 1 {
+    print("Index \(i), value: \(sortedNumbers[i])")
 }
 print("-----")
+
 
 
